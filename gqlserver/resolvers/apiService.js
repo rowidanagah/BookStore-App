@@ -61,6 +61,47 @@ const postBook = async (bookInfo) => {
     }
 }
 
+const deletBook = async (book_uuid) => {
+    try {
+        console.log(book_uuid)
+        const response = await axios.delete(`${API_URL}book/${book_uuid}`);
+        return true;
+    }
+    catch (error) {
+        console.log(error)
+        return false
+    }
+}
+
+const getUserData = async (token) => {
+    try {
+        console.log('token' , token)
+        const response = await axios(`${API_URL}user-data/`, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`,
+            }
+        });
+        console.log(response, 'user data')
+        return response.data.user;
+
+    }
+    catch (error) { console.log(error) }
+}
+
+const registerUser = async (UserInputData) => {
+    try {
+        console.log('user-----------', UserInputData)
+        const response = await axios.post(`${API_URL}api/v1/rest-auth/registration/`, UserInputData);
+        console.log(response)
+        const token = response.data.key
+
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+
 module.exports = {
-    getBooks, bookDetails, getFavoriteBooks, postBook
+    getBooks, bookDetails, getFavoriteBooks, postBook, deletBook, registerUser, getUserData
 }

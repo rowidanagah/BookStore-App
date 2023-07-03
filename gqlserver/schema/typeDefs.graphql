@@ -22,8 +22,8 @@ type User {
   email: String!
   first_name: String
   last_name: String
-  password: String!
-  confirmPassword: String!
+  password1: String!
+  password2: String!
 }
 
 """
@@ -62,10 +62,8 @@ input PostBookInput {
 input RegistrationInput {
   username: String!
   email: String!
-  first_name: String
-  last_name: String
-  password: String!
-  confirmPassword: String!
+  password1: String!
+  password2: String!
 }
 
 input FavoriteBookInput {
@@ -76,12 +74,13 @@ type Query {
   book(book_uuid: UUID!): Book!
   getBooks: [Book!]
   getFavoriteBooks: [Book!]
+  UserInfo(token: String!): User!
 }
 
 type Mutation {
-  register(input: RegistrationInput!): AuthPayload
+  register(UserinputData: RegistrationInput!): AuthPayload
   login(username: String!, password: String!): AuthPayload
   addBook(bookInfo: PostBookInput!): Book!
-  deleteBook(id: UUID!): Boolean!
+  rmBook(book_uuid: UUID!): Boolean!
   addFavoriteBook(input: FavoriteBookInput): Book!
 }

@@ -11,8 +11,8 @@ class Book(models.Model):
         editable=False)
     title = models.CharField(max_length=200)
     author = models.CharField(max_length=200)
-    genres = models.CharField(max_length=50)
-    recap = models.CharField(max_length=500)
+    genres = models.CharField(max_length=50, default='fiction')
+    recap = models.CharField(max_length=500, default='', null=True, blank=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
 
     def __str__(self):

@@ -16,10 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from .views import *
+from .authView import UserView
 
 urlpatterns = [
     path("", BookList.as_view()),
+    path("user-data/", UserView.as_view(), name="user-data"),
     path("book/<uuid:pk>", BookDetail.as_view()),
-    path('book/favorite-books/', FavoriteBookView.as_view(), name='favorite-books'),
-
+    path("book/favorite-books/", FavoriteBookView.as_view(), name="favorite-books"),
 ]
