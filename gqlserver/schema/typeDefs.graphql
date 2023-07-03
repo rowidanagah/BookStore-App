@@ -1,0 +1,73 @@
+scalar UUID
+enum BookGenres {
+  fantasy
+  fiction
+  mystery
+  horror
+  adventure
+}
+
+type Book {
+  id: UUID!
+  title: String!
+  author: String!
+  price: Decimal
+  genres : BookGenres
+}
+
+type User {
+  id: ID!
+  username: String!
+  email: String!
+  first_name: String
+  last_name: String
+  password: String!
+}
+
+
+"""
+A Custom type for Auth Object
+"""
+type AuthPayload {
+    """
+    A jwt token returned after a successful auth
+    """
+    token: String!
+    """
+    A user that was authenticated and loggedin
+    """
+    user: User!
+}
+
+
+type FavoriteBook {
+  user: User!
+  book: Book!
+}
+
+"""
+The input sent with the postPhoto Mutation
+"""
+input PostBookInput {
+  title: String!
+  auther: String!
+  genre: BookGenres = fiction
+  """
+  (optional) A brief recap of the photo
+  """
+  recap: String
+  price: Decimal
+}
+
+type Query {
+  book(id: UUID!): Book!
+  getBooks(): [Book!!]
+  getFavoriteBooks(): [Book!!]
+}
+
+
+type Mutation{
+    addBook(input: PostBookInput) : Book!
+    deleteBook(id: UUID!): Boolean!
+    addFaviorateBook(input: FavoriteBook) : Book!
+}
