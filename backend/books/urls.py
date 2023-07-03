@@ -20,4 +20,6 @@ from .views import *
 urlpatterns = [
     path("", BookList.as_view()),
     path("book/<uuid:pk>", BookDetail.as_view()),
+    path('book/favorite-books/', FavoriteBookView.as_view(), name='favorite-books'),
+
 ]

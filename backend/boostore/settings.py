@@ -38,6 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'books',
     'rest_framework',
+    "rest_framework.authtoken",
+    "rest_auth",
+    "allauth",  # new
+    "allauth.account",  # new
+    "allauth.socialaccount",  # new
+    "rest_auth.registration",  # new
     'django.contrib.staticfiles',
 ]
 
@@ -77,17 +83,19 @@ WSGI_APPLICATION = 'boostore.wsgi.application'
 
 # backend/project/settings.py
 
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'books',
-        'USER': 'postgres',
-        'PASSWORD': 'dana46',
-        # 'HOST': '127.0.0.1',
-        'HOST': 'postgres',  # Name of the Docker Compose service for PostgreSQL
-        'PORT': '5432',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "postgres",
+        "USER": "postgres",
+        "PASSWORD": "dana46",
+        "HOST": "db",
+        "PORT": "5432",
     }
 }
+        # 'HOST': '127.0.0.1',
+     
 
 
 # Password validation
@@ -122,6 +130,10 @@ USE_L10N = True
 
 USE_TZ = True
 
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+SITE_ID = 1
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/

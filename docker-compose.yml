@@ -1,0 +1,25 @@
+version: '3'
+services:
+  backend:
+    build: ./backend
+    ports:
+      - '8000:8000'
+    depends_on:
+      - db
+  # frontend:
+  #   build: ./frontend
+  #   ports:
+  #     - '3000:3000'
+  db:
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
+      # - POSTGRES_DB=books
+      # - POSTGRES_USER=postgres
+      # - POSTGRES_PASSWORD=dana46
+
+
+volumes:
+  postgres_data:
