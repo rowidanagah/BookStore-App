@@ -1,4 +1,5 @@
 scalar UUID
+
 enum BookGenres {
   fantasy
   fiction
@@ -11,8 +12,8 @@ type Book {
   id: UUID!
   title: String!
   author: String!
-  price: Decimal
-  genres : BookGenres
+  price: Float
+  genres: BookGenres
 }
 
 type User {
@@ -22,27 +23,26 @@ type User {
   first_name: String
   last_name: String
   password: String!
+  confirmPassword: String!
 }
-
 
 """
 A Custom type for Auth Object
 """
 type AuthPayload {
-    """
-    A jwt token returned after a successful auth
-    """
-    token: String!
-    """
-    A user that was authenticated and loggedin
-    """
-    user: User!
+  """
+  A jwt token returned after a successful auth
+  """
+  token: String!
+  """
+  A user that was authenticated and logged in
+  """
+  user: User!
 }
-
 
 type FavoriteBook {
   user: User!
-  book: Book!
+  book: [Book!]!
 }
 
 """
@@ -50,24 +50,38 @@ The input sent with the postPhoto Mutation
 """
 input PostBookInput {
   title: String!
-  auther: String!
+  author: String
   genre: BookGenres = fiction
   """
   (optional) A brief recap of the photo
   """
   recap: String
-  price: Decimal
+  price: Float
 }
 
+input RegistrationInput {
+  username: String!
+  email: String!
+  first_name: String
+  last_name: String
+  password: String!
+  confirmPassword: String!
+}
+
+input FavoriteBookInput {
+  bookid: UUID
+  # user: User!
+}
 type Query {
-  book(id: UUID!): Book!
-  getBooks(): [Book!!]
-  getFavoriteBooks(): [Book!!]
+  book(book_uuid: UUID!): Book!
+  getBooks: [Book!]
+  getFavoriteBooks: [Book!]
 }
 
-
-type Mutation{
-    addBook(input: PostBookInput) : Book!
-    deleteBook(id: UUID!): Boolean!
-    addFaviorateBook(input: FavoriteBook) : Book!
+type Mutation {
+  register(input: RegistrationInput!): AuthPayload
+  login(username: String!, password: String!): AuthPayload
+  addBook(bookInfo: PostBookInput!): Book!
+  deleteBook(id: UUID!): Boolean!
+  addFavoriteBook(input: FavoriteBookInput): Book!
 }
