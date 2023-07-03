@@ -84,18 +84,28 @@ WSGI_APPLICATION = 'boostore.wsgi.application'
 # backend/project/settings.py
 
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "postgres",
-        "USER": "postgres",
-        "PASSWORD": "dana46",
-        "HOST": "db",
-        "PORT": "5432",
-    }
-}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "postgres",
+#         "USER": "postgres",
+#         "PASSWORD": "dana46",
+#         "HOST": "db",
+#         "PORT": "5432",
+#     }
+# }
         # 'HOST': '127.0.0.1',
      
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'bookStore',  # Replace 'your_database_name' with your desired name
+        'USER': 'postgres',
+        'PASSWORD': 'dana46',
+        'HOST': 'db',  # Replace 'your_postgres_host' with the PostgreSQL host
+        'PORT': '5432',  # Replace 'your_postgres_port' with the PostgreSQL port
+    }
+}
 
 
 # Password validation
