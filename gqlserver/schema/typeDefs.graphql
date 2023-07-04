@@ -75,10 +75,11 @@ input loginUserDataInput {
   username: String!
   password: String!
 }
+
 type Query {
   book(book_uuid: UUID!): Book!
   getBooks: [Book!]
-  getFavoriteBooks: [Book!]
+  getFavoriteBooks: [Book!] #not yet
   UserInfo(token: String!): User!
 }
 
@@ -87,5 +88,5 @@ type Mutation {
   login(userInfo: loginUserDataInput!): AuthPayload
   addBook(bookInfo: PostBookInput!): Book!
   rmBook(book_uuid: UUID!): Boolean!
-  addFavoriteBook(input: FavoriteBookInput): Book!
+  addFavoriteBook(input: FavoriteBookInput): Book! #not yet
 }

@@ -63,7 +63,6 @@ const postBook = async (bookInfo) => {
 
 const deletBook = async (book_uuid) => {
     try {
-        console.log(book_uuid)
         const response = await axios.delete(`${API_URL}book/${book_uuid}`);
         return true;
     }
@@ -74,7 +73,6 @@ const deletBook = async (book_uuid) => {
 }
 
 const getUserData = async (token) => {
-
     try {
         console.log('token', token)
         const response = await axios(`${API_URL}user-data/`, {
@@ -84,7 +82,6 @@ const getUserData = async (token) => {
             }
         });
         return response.data.user;
-
     }
     catch (error) { console.log('user data gets', error) }
 }
@@ -113,9 +110,8 @@ const loginUser = async (userInfo) => {
     } catch (error) {
         console.log(error.message)
     }
-
-
 }
+
 module.exports = {
     getBooks, bookDetails, getFavoriteBooks, postBook, deletBook, registerUser, getUserData
     , loginUser
