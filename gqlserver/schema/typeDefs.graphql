@@ -70,6 +70,11 @@ input FavoriteBookInput {
   bookid: UUID
   # user: User!
 }
+
+input loginUserDataInput {
+  username: String!
+  password: String!
+}
 type Query {
   book(book_uuid: UUID!): Book!
   getBooks: [Book!]
@@ -79,7 +84,7 @@ type Query {
 
 type Mutation {
   register(UserinputData: RegistrationInput!): AuthPayload
-  login(username: String!, password: String!): AuthPayload
+  login(userInfo: loginUserDataInput!): AuthPayload
   addBook(bookInfo: PostBookInput!): Book!
   rmBook(book_uuid: UUID!): Boolean!
   addFavoriteBook(input: FavoriteBookInput): Book!
