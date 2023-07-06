@@ -1,19 +1,22 @@
-import { useQuery } from '@apollo/client';
-import { GET_BOOK_DETAIL_QUERY } from '../ApolloClient/ROOT_QUERY';
-import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { useQuery } from "@apollo/client";
+import { GET_BOOK_DETAIL_QUERY } from "../ApolloClient/ROOT_QUERY";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import useBookQuery from "../hooks/useBookQuery";
+import loadingStatus from "../helpers/loadingStatus";
+import LoadingIndicator from "./loadingIndicatorMsg";
 
 const BookDetails = () => {
     const { id } = useParams();
-    console.log(id)
-    const { data, loading, refetch } = useQuery(GET_BOOK_DETAIL_QUERY,
-        { variables: { "bookUuid": id } })
-
+    // const { data, loading, refetch } = useQuery(GET_BOOK_DETAIL_QUERY,
+    //     { variables: { "bookUuid": id } })
+    const { book, refetch, loadingState } = useBookQuery(id);
     return (
         <div>
-            {loading ? <p>loading ...</p> :
+            {loadingState === loadingStatus.isLoading ? (
+                <LoadingIndicator msg={loadingState} />
+            ) : (
                 <div>
-
-                    <div class="section_our_solution container mt-5 " >
+                    <div class="section_our_solution container mt-5 ">
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="our_solution_category">
@@ -21,35 +24,72 @@ const BookDetails = () => {
                                         <div class="solution_card">
                                             <div class="hover_color_bubble"></div>
                                             <div class="so_top_icon">
-                                                <svg id="Layer_1" enable-background="new 0 0 512 512" height="50" viewBox="0 0 512 512" width="40" xmlns="http://www.w3.org/2000/svg">
+                                                <svg
+                                                    id="Layer_1"
+                                                    enable-background="new 0 0 512 512"
+                                                    height="50"
+                                                    viewBox="0 0 512 512"
+                                                    width="40"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                >
                                                     <g>
                                                         <g>
                                                             <g>
                                                                 <g>
-                                                                    <path d="m47.478 452.317 295.441 19.76c5.511.369 10.277-3.8 10.645-9.31l28.393-424.517c.369-5.511-3.8-10.276-9.31-10.645l-295.441-19.76c-5.511-.369-10.276 3.8-10.645 9.31l-28.394 424.517c-.368 5.511 3.8 10.277 9.311 10.645z" fill="#fae19e" />
+                                                                    <path
+                                                                        d="m47.478 452.317 295.441 19.76c5.511.369 10.277-3.8 10.645-9.31l28.393-424.517c.369-5.511-3.8-10.276-9.31-10.645l-295.441-19.76c-5.511-.369-10.276 3.8-10.645 9.31l-28.394 424.517c-.368 5.511 3.8 10.277 9.311 10.645z"
+                                                                        fill="#fae19e"
+                                                                    />
                                                                 </g>
                                                                 <g>
                                                                     <g>
                                                                         <g>
                                                                             <g>
                                                                                 <g>
-                                                                                    <path d="m17.5 504.177h226.14l79.96-79.605v-355.86c0-5.523-4.477-10-10-10h-296.1c-5.523 0-10 4.477-10 10v425.466c0 5.522 4.477 9.999 10 9.999z" fill="#fff9e9" />
+                                                                                    <path
+                                                                                        d="m17.5 504.177h226.14l79.96-79.605v-355.86c0-5.523-4.477-10-10-10h-296.1c-5.523 0-10 4.477-10 10v425.466c0 5.522 4.477 9.999 10 9.999z"
+                                                                                        fill="#fff9e9"
+                                                                                    />
                                                                                 </g>
-                                                                                <path d="m313.601 58.712h-40c5.523 0 10 4.477 10 10v355.861l-.258 40.078 40.258-40.078v-355.861c0-5.523-4.477-10-10-10z" fill="#fff4d6" />
+                                                                                <path
+                                                                                    d="m313.601 58.712h-40c5.523 0 10 4.477 10 10v355.861l-.258 40.078 40.258-40.078v-355.861c0-5.523-4.477-10-10-10z"
+                                                                                    fill="#fff4d6"
+                                                                                />
                                                                             </g>
                                                                         </g>
                                                                     </g>
-                                                                    <path d="m243.64 504.177v-70.253c0-5.523 4.477-10 10-10h69.96z" fill="#ffeec2" />
+                                                                    <path
+                                                                        d="m243.64 504.177v-70.253c0-5.523 4.477-10 10-10h69.96z"
+                                                                        fill="#ffeec2"
+                                                                    />
                                                                 </g>
                                                             </g>
                                                             <g>
-                                                                <path d="m468.636 248.58-33.372.165v-50.826c0-9.183 7.463-16.662 16.673-16.708h.007c9.217-.046 16.693 7.371 16.693 16.562v50.807z" fill="#fed23a" />
-                                                                <path d="m451.96 504.177c-10.362-10.277-16.196-24.263-16.208-38.857l-.062-73.973c0-.644.524-1.169 1.171-1.173l30.038-.149c.647-.003 1.171.517 1.171 1.161l.062 74.079c.012 14.531-5.749 28.472-16.015 38.756z" fill="#54b1ff" />
-                                                                <path d="m451.959 469.333h-.01c-14.434.072-26.14-11.542-26.14-25.935v-213.527c0-6.778 5.477-12.283 12.255-12.316l27.626-.137c6.826-.034 12.378 5.49 12.378 12.316v213.436c0 14.38-11.687 26.091-26.109 26.163z" fill="#fdf385" />
-                                                                <path d="m465.69 217.417-23.769.118c6.037.79 10.708 5.94 10.708 12.198v213.437c0 9.823-5.455 18.397-13.507 22.87 3.79 2.115 8.164 3.317 12.826 3.293h.01c14.422-.072 26.109-11.783 26.109-26.163v-213.436c.001-6.826-5.551-12.351-12.377-12.317z" fill="#faee6e" />
-                                                                <path d="m491.274 247.925-71.615.355c-7.305.036-13.226 5.968-13.226 13.248 0 7.281 5.921 13.153 13.226 13.117l58.389-.29v77.489c0 7.281 5.921 13.153 13.226 13.117 7.305-.036 13.226-5.968 13.226-13.248v-90.672c0-7.28-5.922-13.152-13.226-13.116z" fill="#54b1ff" />
+                                                                <path
+                                                                    d="m468.636 248.58-33.372.165v-50.826c0-9.183 7.463-16.662 16.673-16.708h.007c9.217-.046 16.693 7.371 16.693 16.562v50.807z"
+                                                                    fill="#fed23a"
+                                                                />
+                                                                <path
+                                                                    d="m451.96 504.177c-10.362-10.277-16.196-24.263-16.208-38.857l-.062-73.973c0-.644.524-1.169 1.171-1.173l30.038-.149c.647-.003 1.171.517 1.171 1.161l.062 74.079c.012 14.531-5.749 28.472-16.015 38.756z"
+                                                                    fill="#54b1ff"
+                                                                />
+                                                                <path
+                                                                    d="m451.959 469.333h-.01c-14.434.072-26.14-11.542-26.14-25.935v-213.527c0-6.778 5.477-12.283 12.255-12.316l27.626-.137c6.826-.034 12.378 5.49 12.378 12.316v213.436c0 14.38-11.687 26.091-26.109 26.163z"
+                                                                    fill="#fdf385"
+                                                                />
+                                                                <path
+                                                                    d="m465.69 217.417-23.769.118c6.037.79 10.708 5.94 10.708 12.198v213.437c0 9.823-5.455 18.397-13.507 22.87 3.79 2.115 8.164 3.317 12.826 3.293h.01c14.422-.072 26.109-11.783 26.109-26.163v-213.436c.001-6.826-5.551-12.351-12.377-12.317z"
+                                                                    fill="#faee6e"
+                                                                />
+                                                                <path
+                                                                    d="m491.274 247.925-71.615.355c-7.305.036-13.226 5.968-13.226 13.248 0 7.281 5.921 13.153 13.226 13.117l58.389-.29v77.489c0 7.281 5.921 13.153 13.226 13.117 7.305-.036 13.226-5.968 13.226-13.248v-90.672c0-7.28-5.922-13.152-13.226-13.116z"
+                                                                    fill="#54b1ff"
+                                                                />
                                                                 <g>
-                                                                    <path d="m491.274 247.925-38.441.188-.167 26.311 25.381-.067v77.489c0 7.281 5.921 13.153 13.226 13.117 7.305-.036 13.226-5.968 13.226-13.248v-90.672c.001-7.282-5.921-13.154-13.225-13.118z" fill="#3da7ff" />
+                                                                    <path
+                                                                        d="m491.274 247.925-38.441.188-.167 26.311 25.381-.067v77.489c0 7.281 5.921 13.153 13.226 13.117 7.305-.036 13.226-5.968 13.226-13.248v-90.672c.001-7.282-5.921-13.154-13.225-13.118z"
+                                                                        fill="#3da7ff"
+                                                                    />
                                                                 </g>
                                                             </g>
                                                         </g>
@@ -66,33 +106,35 @@ const BookDetails = () => {
                                                 </svg>
                                             </div>
                                             <div class="solu_title">
-                                                <h3>{data.book.title}</h3>
+                                                <h3>{book.title}</h3>
                                             </div>
                                             <div class="solu_title">
-                                                <h6 className='display-6'>  By {data.book.author}</h6>
-                                                <p className='display-6'>- {data.book.genres}</p>
+                                                <h6 className="display-6"> By {book.author}</h6>
+                                                <p className="display-6">- {book.genres}</p>
                                             </div>
                                             <div class="solu_description">
                                                 <p>
-                                                    {data.book.recap ? <p>data.book.recap</p> :
-                                                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
+                                                    {book.recap ? (
+                                                        <p>book.recap</p>
+                                                    ) : (
+                                                        <p>
+                                                            It is a long established fact that a reader will
+                                                            be distracted by the readable content of a page
+                                                            when looking at its layout.
                                                         </p>
-                                                    }
+                                                    )}
                                                 </p>
                                             </div>
                                         </div>
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            }
+            )}
         </div>
-    )
-}
-
+    );
+};
 
 export default BookDetails;
