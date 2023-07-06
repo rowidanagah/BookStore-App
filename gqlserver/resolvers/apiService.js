@@ -41,11 +41,10 @@ const bookDetails = async (book_uuid) => {
     console.log('id', book_uuid)
     try {
         const response = await axios.get(`${API_URL}/book/${book_uuid}`)
-        console.log(response)
         return response.data
     }
     catch (error) {
-        console.log(error)
+        console.log(error.message)
     }
 }
 

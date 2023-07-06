@@ -78,7 +78,7 @@ input loginUserDataInput {
 
 type Query {
   book(book_uuid: UUID!): Book!
-  getBooks: [Book!]
+  getBooks: [Book!]!
   getFavoriteBooks: [Book!] #not yet
   UserInfo(token: String!): User!
 }

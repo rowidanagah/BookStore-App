@@ -6,20 +6,34 @@ services:
       - '8000:8000'
     depends_on:
       - db
+    networks:
+      - my-network
   # frontend:
-  #   build: ./frontend
+  #   build: ./bookstore
   #   ports:
-  #     - '3000:3000'
+  #     - 3000:3000
+  #   networks:
+  #     - my-network
+  # graphql-server:
+  #   build: ./gqlserver
+  #   ports:
+  #     - 4000:4000
+  #   networks:
+  #     - my-network
   db:
     image: postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
       - "POSTGRES_HOST_AUTH_METHOD=trust"
-      - POSTGRES_DB=bookStore  # Replace 'your_database_name' with the same name you specified in Django settings
+      - POSTGRES_DB=bookStore
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=dana46
-
-
+    networks:
+      - my-network
 volumes:
   postgres_data:
+
+
+networks:
+  my-network:
