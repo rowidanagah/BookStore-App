@@ -4,9 +4,13 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import useBookQuery from "../hooks/useBookQuery";
 import loadingStatus from "../helpers/loadingStatus";
 import LoadingIndicator from "./loadingIndicatorMsg";
+import { useContext } from "react";
+import { navigationContext } from "../context/navigationContext";
+import HomeBtn from "./HomeButton";
 
 const BookDetails = () => {
-    const { id } = useParams();
+    const { params: id } = useContext(navigationContext);
+    console.log(id)
     // const { data, loading, refetch } = useQuery(GET_BOOK_DETAIL_QUERY,
     //     { variables: { "bookUuid": id } })
     const { book, refetch, loadingState } = useBookQuery(id);
@@ -133,6 +137,7 @@ const BookDetails = () => {
                     </div>
                 </div>
             )}
+            <HomeBtn />
         </div>
     );
 };

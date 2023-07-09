@@ -1,0 +1,28 @@
+.theme-switch{
+    cursor: pointer;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    background-image: linear-gradient(to right, rgb(26, 212, 26), rgb(66, 66, 239));
+    position: relative;
+    border-radius: 20px;
+}
+
+.theme-switch::before{
+    content: '';
+    position: absolute;
+    top: 3px;
+    width: 18px;
+    height: 18px;
+    background-color: white;
+    border-radius: 50%;
+}
+.dark-switch::before{
+    right: 3px
+}
+.light-switch::before{
+    left: 3px
+}
+.active-switch::before{
+    right: 0!important;
+}

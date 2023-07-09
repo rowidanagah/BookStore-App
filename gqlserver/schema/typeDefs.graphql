@@ -84,7 +84,7 @@ type Query {
 }
 
 type Mutation {
-  register(UserinputData: RegistrationInput!): AuthPayload
+  register(UserinputData: RegistrationInput!): String
   login(userInfo: loginUserDataInput!): AuthPayload
   addBook(bookInfo: PostBookInput!): Book!
   rmBook(book_uuid: UUID!): Boolean!

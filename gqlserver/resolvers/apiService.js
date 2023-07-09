@@ -80,6 +80,7 @@ const getUserData = async (token) => {
                 'Authorization': `Token ${token}`,
             }
         });
+        console.log(response, 'redd')
         return response.data.user;
     }
     catch (error) { console.log('user data gets', error) }
@@ -90,9 +91,8 @@ const registerUser = async (UserInputData) => {
         console.log('user-----------', UserInputData)
         const response = await axios.post(`${API_URL}api/v1/rest-auth/registration/`, UserInputData);
         console.log(response)
-        const token = response.data.key
-        const user = await getUserData(token);
-        return { token, user }
+        const token = response.data.key;
+        return token
 
     } catch (error) {
         console.log(error.message)

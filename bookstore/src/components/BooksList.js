@@ -4,7 +4,7 @@ import './BookCard.css'
 const BooksList = ({ books, refetch }) => {
     console.log(books)
     return (
-        <div>
+        <div className="">
             <br /><br /><br /><br /><br />
             
             <div class="section_our_solution">

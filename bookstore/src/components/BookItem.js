@@ -1,7 +1,16 @@
-import { memo } from "react";
-import { Link } from "react-router-dom";
+import { memo, useContext } from "react";
+// import { Link } from "react-router-dom";
+import { navigationContext } from "../context/navigationContext";
+import navValues from "../helpers/navValues";
 
 const BookItem = ({ price, title, genres, author, recap, id }) => {
+    const { navigateTo } = useContext(navigationContext);
+    console.log(useContext(navigationContext))
+    const handelNav = () => {
+        console.log(navigateTo, id)
+        navigateTo(navValues.book, id);
+
+    }
     return (
         <div class="solution_cards_box ">
             <div class="solution_card">
@@ -46,11 +55,12 @@ const BookItem = ({ price, title, genres, author, recap, id }) => {
                 </div>
                 <div class="solu_description">
                     {recap ? <p>recap</p> : <p>What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>}
-                    <Link to={`/book/${id}`} >
-                        <button type="buton" class="read_more_btn">
+                    {/* <Link to={`/book/${id}`} > */}
 
-                            Read More</button>
-                    </Link>
+                    <button type="buton" class="read_more_btn" onClick={handelNav}>
+
+                        Read More</button>
+                    {/* </Link> */}
                 </div>
             </div>
         </div>

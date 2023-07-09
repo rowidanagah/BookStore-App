@@ -3,11 +3,20 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { NavigationProvider } from './context/navigationContext';
+import { DarkModeProvider } from './context/darkModeProvider';
+import Container from './UI/Container';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <DarkModeProvider>F
+      <NavigationProvider>
+        <Container>
+          <App />
+        </Container>
+      </NavigationProvider>
+    </DarkModeProvider>
   </React.StrictMode>
 );
 

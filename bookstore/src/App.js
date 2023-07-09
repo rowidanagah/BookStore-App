@@ -3,20 +3,28 @@ import './App.css';
 import { client } from "./ApolloClient/client";
 import { ApolloProvider } from '@apollo/client';
 import Books from './components/Books';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import BookDetails from './components/BookDetails';
+import { NavigationProvider, navigationContext } from './context/navigationContext';
+import ComponentPicker from './helpers/ComponentPicker';
+import navValues from './helpers/navValues';
+import { useContext } from 'react';
+import DarkSwitch from './components/DarkSwitch';
 
 function App() {
+  const { currntNav } = useContext(navigationContext);
   return (
+    // <ApolloProvider client={client}>
+    //   <BrowserRouter>
+    //     <Switch>
+    //       <Route exact path="/" component={Books} />
+    //       <Route path="/book/:id" component={BookDetails} />
+    //     </Switch>
+    //   </BrowserRouter>
+    // </ApolloProvider>
+
     <ApolloProvider client={client}>
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/" component={Books} />
-          <Route path="/book/:id" component={BookDetails} />
-        </Switch>
-      </BrowserRouter>
+      <ComponentPicker currentNavLocation={currntNav} />
     </ApolloProvider>
   );
 }
-
 export default App;
+
