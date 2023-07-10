@@ -1,18 +1,26 @@
 import { useMutation } from "@apollo/client";
 import { AddBook_Mutation, SignUp_Mutation } from "../ApolloClient/ROOT_MUTATIONS"
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import loadingStatus from "../helpers/loadingStatus";
+import { navigationContext } from "../context/navigationContext";
+import navValues from "../helpers/navValues";
 
 const useAddBook = () => {
 
     const [add_book, { loading, error, data }] = useMutation(AddBook_Mutation);
     const [loadingState, setLoadingState] = useState(loadingStatus.isLoading);
-
+    const { navigateTo } = useContext(navigationContext)
     const AddBookWrapper = async (bookInfo) => {
         try {
             console.log(bookInfo)
-            const response = await add_book({ variables: { "bookInfo": bookInfo } })
-            console.log(response, loading, )
+            const response = await add_book({
+                variables: { "bookInfo": bookInfo },
+                onCompleted: ({ addBook: book }) => {
+                    console.log(book)
+                    navigateTo(navValues.book, book.id)
+                }
+            })
+            console.log(response, loading,)
         }
         catch (error) {
             return (error.massage)

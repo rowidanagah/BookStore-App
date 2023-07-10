@@ -6,8 +6,8 @@ import HomeBtn from "../HomeButton";
 
 const AddBook = () => {
     const [Bookdata, setBookdata] = useState({
-        "author": "",
-        "title": "",
+        "title": "the secret key",
+        "author": "hover",
         "price": 0,
         "genre": "fiction",
         "recap": ""
