@@ -1,12 +1,12 @@
 import { useQuery } from "@apollo/client";
-import { GET_BOOK_DETAIL_QUERY } from "../ApolloClient/ROOT_QUERY";
+import { GET_BOOK_DETAIL_QUERY } from "../../ApolloClient/ROOT_QUERY";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import useBookQuery from "../hooks/useBookQuery";
-import loadingStatus from "../helpers/loadingStatus";
-import LoadingIndicator from "./loadingIndicatorMsg";
+import useBookQuery from "../../hooks/useBookQuery";
+import loadingStatus from "../../helpers/loadingStatus";
+import LoadingIndicator from "../loadingIndicatorMsg";
 import { useContext } from "react";
-import { navigationContext } from "../context/navigationContext";
-import HomeBtn from "./HomeButton";
+import { navigationContext } from "../../context/navigationContext";
+import HomeBtn from "../HomeButton";
 
 const BookDetails = () => {
     const { params: id } = useContext(navigationContext);

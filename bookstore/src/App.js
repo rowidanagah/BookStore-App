@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { client } from "./ApolloClient/client";
 import { ApolloProvider } from '@apollo/client';
-import Books from './components/Books';
+import Books from './components/Book/Books';
 import { NavigationProvider, navigationContext } from './context/navigationContext';
 import ComponentPicker from './helpers/ComponentPicker';
 import navValues from './helpers/navValues';

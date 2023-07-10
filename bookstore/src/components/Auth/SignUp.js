@@ -2,15 +2,16 @@ import { useMutation } from "@apollo/client";
 import { SignUp_Mutation } from "../../ApolloClient/ROOT_MUTATIONS";
 import { useState } from "react";
 import useSignUp from "../../hooks/useSignUp";
+import HomeBtn from "../HomeButton";
 
 const SignUp = () => {
     const [SignUpdata, setSignUpdata] = useState({
-        username: "reactuse2r",
-        email: "reactuser2@gmail.com",
-        password1: "danDANA@45",
-        password2: "danDANA@45",
+        username: "",
+        email: "",
+        password1: "",
+        password2: "",
     });
-    const { data, loading, error, signUpUser } = useSignUp();
+    const { data, loadingState, signUpUser } = useSignUp();
 
     const handleSubmit = async (SignUpdata, event) => {
         event.preventDefault();
@@ -104,7 +105,7 @@ const SignUp = () => {
                                             />
                                         </div>
 
-                                        <button type="submit" class="btn btn-primary">
+                                        <button type="submit" class="btn btn-primary m-3">
                                             Submit
                                         </button>
                                     </form>
@@ -114,6 +115,7 @@ const SignUp = () => {
                     </div>
                 </div>
             </div>
+            <HomeBtn />
         </div>
     );
 };

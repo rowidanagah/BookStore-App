@@ -1,20 +1,25 @@
 import { useMutation } from "@apollo/client";
-import { SignUp_Mutation } from "../ApolloClient/ROOT_MUTATIONS"
+import { AddBook_Mutation, SignUp_Mutation } from "../ApolloClient/ROOT_MUTATIONS"
 import { useEffect, useState } from "react";
 import loadingStatus from "../helpers/loadingStatus";
 
-const useSignUp = () => {
-    // const { data, loading, error } = useMutation(SignUp_Mutation, {
-    //     variables: { "userinputData": UserinputData }, onCompleted: () => { }
-    // })
+const useAddBook = () => {
 
-    const [signUp, { loading, error, data }] = useMutation(SignUp_Mutation);
+    const [add_book, { loading, error, data }] = useMutation(AddBook_Mutation);
     const [loadingState, setLoadingState] = useState(loadingStatus.isLoading);
 
-    const signUpUser = async (userinputData) => {
+    const AddBookWrapper = async (bookInfo) => {
         try {
-            console.log(userinputData)
-            const response = await signUp({ variables: { userinputData } })
+            const tes = {
+                "author": "null",
+                "title": "d",
+                "price": 32,
+                "genre": "adventure",
+                "recap": "da"
+            }
+            console.log(bookInfo, 'jkjda')
+            const response = await add_book({ variables: { "bookInfo": bookInfo } })
+
             console.log(response)
         }
         catch (error) {
@@ -35,7 +40,7 @@ const useSignUp = () => {
     }, [data])
 
 
-    return { data, loadingState, signUpUser }
+    return { data, loadingState, AddBookWrapper }
 
 }
-export default useSignUp;
+export default useAddBook;

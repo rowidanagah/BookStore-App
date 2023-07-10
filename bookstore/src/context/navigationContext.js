@@ -8,6 +8,7 @@ const NavigationProvider = ({ children }) => {
         setNav({ currntNav: navTo, navigateTo, params })
     }, [])
     const [nav, setNav] = useState({ currntNav: navValues.register, navigateTo });
+    
     return (
         <navigationContext.Provider value={nav}>
             {children}

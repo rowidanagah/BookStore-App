@@ -1,7 +1,7 @@
 import BooksList from "./BooksList";
-import useBooks from "../hooks/useBooks";
-import loadingStatus from "../helpers/loadingStatus";
-import LoadingIndicator from "./loadingIndicatorMsg";
+import useBooks from "../../hooks/useBooks";
+import loadingStatus from "../../helpers/loadingStatus";
+import LoadingIndicator from "../loadingIndicatorMsg";
 
 const Books = () => {
     // const { data, loading, refetch } = useQuery(GET_BOOKS_QUERY) // , { pollInterval: 5000 }

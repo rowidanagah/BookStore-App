@@ -4,6 +4,7 @@ const navValues = {
     login: "Login",
     register: "Register",
     bins: "Favourite",
+    addBook: "AddBook"
 };
 
 export default navValues;

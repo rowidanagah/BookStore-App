@@ -1,7 +1,8 @@
 import Login from "../components/Auth/Login";
 import SignUp from "../components/Auth/SignUp";
-import BookDetails from "../components/BookDetails";
-import Books from "../components/Books";
+import AddBook from "../components/Book/AddBook";
+import BookDetails from "../components/Book/BookDetails";
+import Books from "../components/Book/Books";
 import navValues from "./navValues";
 
 const ComponentPicker = ({ currentNavLocation }) => {
@@ -15,6 +16,8 @@ const ComponentPicker = ({ currentNavLocation }) => {
             return <Login />;
         case (navValues.book):
             return <BookDetails />
+        case (navValues.addBook):
+            return <AddBook />;
         default:
             return (
                 <h3>

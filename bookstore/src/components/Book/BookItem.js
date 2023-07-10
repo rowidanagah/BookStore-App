@@ -1,11 +1,11 @@
 import { memo, useContext } from "react";
 // import { Link } from "react-router-dom";
-import { navigationContext } from "../context/navigationContext";
-import navValues from "../helpers/navValues";
+import { navigationContext } from "../../context/navigationContext";
+import navValues from "../../helpers/navValues";
+import DeleteBookBtn from "./DeleteBookBtn";
 
 const BookItem = ({ price, title, genres, author, recap, id }) => {
     const { navigateTo } = useContext(navigationContext);
-    console.log(useContext(navigationContext))
     const handelNav = () => {
         console.log(navigateTo, id)
         navigateTo(navValues.book, id);
@@ -15,6 +15,7 @@ const BookItem = ({ price, title, genres, author, recap, id }) => {
         <div class="solution_cards_box ">
             <div class="solution_card">
                 <div class="hover_color_bubble"></div>
+                <DeleteBookBtn uuid={id} />
                 <div class="so_top_icon">
                     <svg id="Layer_1" enable-background="new 0 0 512 512" height="50" viewBox="0 0 512 512" width="40" xmlns="http://www.w3.org/2000/svg">
                         <g><g><g><g>

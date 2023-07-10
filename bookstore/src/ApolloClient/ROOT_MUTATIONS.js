@@ -14,6 +14,21 @@ mutation($userinputData: RegistrationInput!){
 }
 `
 
-// const AddBook_Mutation = gql``
+const AddBook_Mutation = gql`
+mutation($bookInfo: PostBookInput!){
+  addBook(bookInfo: $bookInfo) {
+    author
+    genres
+    id
+    price
+    title
+  }
+}
+`
 
-export { Login_Mutation, SignUp_Mutation }
+const DeleteBook_Mutation = gql`
+mutation($bookUuid: UUID!){
+  rmBook(book_uuid: $bookUuid)
+}`
+
+export { Login_Mutation, SignUp_Mutation, AddBook_Mutation, DeleteBook_Mutation }

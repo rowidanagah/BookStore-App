@@ -51,6 +51,7 @@ const bookDetails = async (book_uuid) => {
 
 const postBook = async (bookInfo) => {
     try {
+        console.log(bookInfo)
         const response = await axios.post(`${API_URL}`, bookInfo);
         console.log(response)
         return response.data;
@@ -62,6 +63,7 @@ const postBook = async (bookInfo) => {
 
 const deletBook = async (book_uuid) => {
     try {
+        console.log(book_uuid)
         const response = await axios.delete(`${API_URL}book/${book_uuid}`);
         return true;
     }
