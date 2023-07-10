@@ -10,17 +10,9 @@ const useAddBook = () => {
 
     const AddBookWrapper = async (bookInfo) => {
         try {
-            const tes = {
-                "author": "null",
-                "title": "d",
-                "price": 32,
-                "genre": "adventure",
-                "recap": "da"
-            }
-            console.log(bookInfo, 'jkjda')
+            console.log(bookInfo)
             const response = await add_book({ variables: { "bookInfo": bookInfo } })
-
-            console.log(response)
+            console.log(response, loading, )
         }
         catch (error) {
             return (error.massage)

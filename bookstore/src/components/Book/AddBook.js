@@ -6,11 +6,11 @@ import HomeBtn from "../HomeButton";
 
 const AddBook = () => {
     const [Bookdata, setBookdata] = useState({
-        "author": "null",
-        "title": "d",
-        "price": 32,
-        "genre": "adventure",
-        "recap": "da"
+        "author": "",
+        "title": "",
+        "price": 0,
+        "genre": "fiction",
+        "recap": ""
     });
     const { data, loadingState, AddBookWrapper } = useAddBook();
 
