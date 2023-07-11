@@ -37,7 +37,7 @@ const useAddBook = () => {
         if (error) {
             setLoadingState(loadingStatus.hasErrored);
         }
-    }, [data])
+    }, [data, loading, error])
 
 
     return { data, loadingState, AddBookWrapper }

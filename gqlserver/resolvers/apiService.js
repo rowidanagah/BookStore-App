@@ -63,7 +63,7 @@ const postBook = async (bookInfo) => {
 
 const deletBook = async (book_uuid) => {
     try {
-        console.log(book_uuid)
+        console.log(book_uuid, '------------------------------------------------------')
         const response = await axios.delete(`${API_URL}book/${book_uuid}`);
         return true;
     }

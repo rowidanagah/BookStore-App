@@ -7,9 +7,7 @@ import DeleteBookBtn from "./DeleteBookBtn";
 const BookItem = ({ price, title, genres, author, recap, id }) => {
     const { navigateTo } = useContext(navigationContext);
     const handelNav = () => {
-        console.log(navigateTo, id)
         navigateTo(navValues.book, id);
-
     }
     return (
         <div class="solution_cards_box ">

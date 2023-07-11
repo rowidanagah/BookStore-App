@@ -5,7 +5,7 @@ const DeleteBookBtn = ({ uuid }) => {
 
     const confirmDelte = async () => {
         console.log(uuid)
-        await handelDelteBook({"bookUuid": "b59d1bc1-b88a-4eb7-9849-cc3b222ede46"})
+        await handelDelteBook(uuid)
     }
     return (
         <button onClick={() => confirmDelte()}><i class="fa-solid fa-trash"></i></button>
