@@ -10,7 +10,7 @@ import Container from './UI/Container';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <DarkModeProvider>F
+    <DarkModeProvider>
       <NavigationProvider>
         <Container>
           <App />
