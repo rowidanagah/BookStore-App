@@ -3,6 +3,7 @@ import { SignUp_Mutation } from "../../ApolloClient/ROOT_MUTATIONS";
 import { useState } from "react";
 import useSignUp from "../../hooks/useSignUp";
 import HomeBtn from "../HomeButton";
+import loadingStatus from "../../helpers/loadingStatus";
 
 const SignUp = () => {
     const [SignUpdata, setSignUpdata] = useState({
@@ -13,11 +14,13 @@ const SignUp = () => {
     });
     const { data, loadingState, signUpUser } = useSignUp();
 
-    const handleSubmit = async (SignUpdata, event) => {
+    const handleSubmit =  (SignUpdata, event) => {
         event.preventDefault();
-        await signUpUser(SignUpdata);
+        signUpUser(SignUpdata);
+
     };
 
+    console.log(loadingState, '===========')
     return (
         <div>
             <div class="section_our_solution container mt-5 ">
@@ -26,6 +29,8 @@ const SignUp = () => {
                         <div class="our_solution_category">
                             <div class="solution_cards_box">
                                 <div class="solution_card">
+                                {loadingState == loadingStatus.hasErrored && <h5> {loadingState}</h5>}
+
                                     <div class="hover_color_bubble"></div>
                                     <form onSubmit={(event) => handleSubmit(SignUpdata, event)}>
                                         {/* email */}

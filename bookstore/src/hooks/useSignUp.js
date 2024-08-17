@@ -13,9 +13,7 @@ const useSignUp = () => {
 
     const signUpUser = async (userinputData) => {
         try {
-            console.log(userinputData)
             const response = await signUp({ variables: { userinputData } })
-            console.log(response)
         }
         catch (error) {
             return (error.massage)
@@ -26,13 +24,13 @@ const useSignUp = () => {
         if (loading) {
             setLoadingState(loadingStatus.isLoading);
         }
-        if (!loading) {
-            setLoadingState(loadingStatus.loaded);
-        }
-        if (error) {
+        else if (error) {
             setLoadingState(loadingStatus.hasErrored);
         }
-    }, [data])
+        else if (loading !== false) {
+            setLoadingState(loadingStatus.loaded);
+        }
+    }, [loading, error, data])
 
 
     return { data, loadingState, signUpUser }

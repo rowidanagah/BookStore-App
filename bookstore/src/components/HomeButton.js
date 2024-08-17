@@ -4,7 +4,6 @@ import { navigationContext } from "../context/navigationContext";
 import navValues from "../helpers/navValues";
 const HomeBtn = () => {
     const { navigateTo } = useContext(navigationContext);
-    console.log(useContext(navigationContext))
     const handelNav = () => {
         navigateTo(navValues.home);
 

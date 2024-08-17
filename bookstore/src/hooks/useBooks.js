@@ -19,14 +19,14 @@ const useBooks = () => {
         if (loading) {
             setLoadingState(loadingStatus.isLoading);
         }
-        if (!loading) {
-            setLoadingState(loadingStatus.loaded);
-            setBooks(data);
-        }
-        if (error) {
+        else if (error) {
             setLoadingState(loadingStatus.hasErrored);
         }
-    }, [data]);
+        else if (loading !== false) {
+            setLoadingState(loadingStatus.loaded);
+        }
+    }, [loading, error, data])
+    
     // const processAndHandleData = () => { }
 
     return { books, loadingState, refetch, setBooksWrapper };

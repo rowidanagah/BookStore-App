@@ -31,13 +31,13 @@ const useAddBook = () => {
         if (loading) {
             setLoadingState(loadingStatus.isLoading);
         }
-        if (!loading) {
-            setLoadingState(loadingStatus.loaded);
-        }
-        if (error) {
+        else if (error) {
             setLoadingState(loadingStatus.hasErrored);
         }
-    }, [data, loading, error])
+        else if (loading !== false) {
+            setLoadingState(loadingStatus.loaded);
+        }
+    }, [loading, error, data])
 
 
     return { data, loadingState, AddBookWrapper }

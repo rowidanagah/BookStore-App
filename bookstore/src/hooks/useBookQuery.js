@@ -12,13 +12,13 @@ const useBookQuery = (id) => {
         if (loading) {
             setLoadingState(loadingStatus.isLoading);
         }
-        if (!loading) {
-            setLoadingState(loadingStatus.loaded);
-        }
-        if (error) {
+        else if (error) {
             setLoadingState(loadingStatus.hasErrored);
         }
-    }, [data]);
+        else if (loading !== false) {
+            setLoadingState(loadingStatus.loaded);
+        }
+    }, [loading, error, data])
 
     return { book: data?.book, loadingState, refetch }
 
