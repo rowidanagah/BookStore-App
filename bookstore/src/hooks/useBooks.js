@@ -12,22 +12,25 @@ const useBooks = () => {
     });
 
     const setBooksWrapper = useCallback((books) => {
-        setBooks(books);
+        setBooks(books.getBooks);
     }, []);
+
+    useEffect(()=>{
+        setBooksWrapper(data)
+    }, [data, loading,setBooksWrapper])
 
     useEffect(() => {
         if (loading) {
             setLoadingState(loadingStatus.isLoading);
         }
         else if (error) {
+            console.log(12)
             setLoadingState(loadingStatus.hasErrored);
         }
-        else if (loading !== false) {
+        else if (!loading) {
             setLoadingState(loadingStatus.loaded);
         }
     }, [loading, error, data])
-    
-    // const processAndHandleData = () => { }
 
     return { books, loadingState, refetch, setBooksWrapper };
 };

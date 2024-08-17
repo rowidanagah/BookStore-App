@@ -15,7 +15,7 @@ const useBookQuery = (id) => {
         else if (error) {
             setLoadingState(loadingStatus.hasErrored);
         }
-        else if (loading !== false) {
+        else if (!loading) {
             setLoadingState(loadingStatus.loaded);
         }
     }, [loading, error, data])

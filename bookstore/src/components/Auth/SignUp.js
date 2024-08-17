@@ -14,13 +14,11 @@ const SignUp = () => {
     });
     const { data, loadingState, signUpUser } = useSignUp();
 
-    const handleSubmit =  (SignUpdata, event) => {
+    const handleSubmit =  async (SignUpdata, event) => {
         event.preventDefault();
-        signUpUser(SignUpdata);
+        await signUpUser(SignUpdata);
 
     };
-
-    console.log(loadingState, '===========')
     return (
         <div>
             <div class="section_our_solution container mt-5 ">
@@ -104,7 +102,6 @@ const SignUp = () => {
                                                         ...SignUpdata,
                                                         password2: e.target.value,
                                                     });
-                                                    console.log(SignUpdata);
                                                 }}
                                                 placeholder="Password"
                                             />

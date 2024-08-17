@@ -1,16 +1,30 @@
 const axios = require('axios');
 // const pool = require("../database")
 
-const API_URL = 'http://localhost:8000/'; // Replace with your Django REST API base URL
+const API_URL = 'http://127.0.0.1:8000/'; // Replace with your Django REST API base URL
 
 const getBooks = async () => {
+    // axios({
+    //     method: 'get',
+    //     url: 'http://127.0.0.1:8000/',
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //     }
+    //   })
+    //     .then(response => {
+    //       console.log(response.data);
+    //     })
+    //     .catch(error => {
+    //       console.error('Error fetching data:', error);
+    //     });
+    console.log(' in getting') 
     try {
         const response = await axios.get(`${API_URL}`)
-        console.log(response.data[0])
-        return response.data;
+       return response.data;
     }
     catch (error) {
-        console.log(error)
+        console.log(error.massage)
+        throw new Error('An unexpected error occurred while getting books        ')
     }
 }
 
@@ -33,7 +47,8 @@ const getFavoriteBooksdb = async () => {
         return [];
     }
     catch (error) {
-        console.log(error)
+        console.log(error.massage)
+        throw new Error('An unexpected error occurred')
     }
 }
 
@@ -45,6 +60,7 @@ const bookDetails = async (book_uuid) => {
     }
     catch (error) {
         console.log(error.message)
+        throw new Error('An unexpected error occurred')
     }
 }
 
@@ -57,18 +73,19 @@ const postBook = async (bookInfo) => {
         return response.data;
     }
     catch (error) {
-        console.log(error)
+        console.log(error.message)
+        throw new Error('An unexpected error occurred')
     }
 }
 
-const deletBook = async (book_uuid) => {
+const deleteBook = async (book_uuid) => {
     try {
         console.log(book_uuid, '------------------------------------------------------')
         const response = await axios.delete(`${API_URL}book/${book_uuid}`);
         return true;
     }
     catch (error) {
-        console.log(error)
+        console.log(error.massage)
         return false
     }
 }
@@ -85,19 +102,23 @@ const getUserData = async (token) => {
         console.log(response, 'redd')
         return response.data.user;
     }
-    catch (error) { console.log('user data gets', error) }
+    catch (error) {
+        console.log('user data gets', error)
+        throw new Error('An unexpected error occurred')
+     }
 }
 
 const registerUser = async (UserInputData) => {
     try {
-        console.log('user-----------', UserInputData)
         const response = await axios.post(`${API_URL}api/v1/rest-auth/registration/`, UserInputData);
-        console.log(response)
+        console.log(response, 'api response ')
         const token = response.data.key;
         return token
 
     } catch (error) {
-        console.log(error.message)
+        console.log(error.message, '---------- register error msg')
+        // return error.message
+        throw new Error('An unexpected error occurred')
     }
 }
 
@@ -110,10 +131,11 @@ const loginUser = async (userInfo) => {
         return { token, user }
     } catch (error) {
         console.log(error.message)
+        throw new Error('An unexpected error occurred')
     }
 }
 
 module.exports = {
-    getBooks, bookDetails, getFavoriteBooks, postBook, deletBook, registerUser, getUserData
+    getBooks, bookDetails, getFavoriteBooks, postBook, deleteBook: deleteBook, registerUser, getUserData
     , loginUser
 }
